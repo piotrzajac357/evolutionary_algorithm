@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8db6f707-89b6-436a-b23d-c6ac1d98db8e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xd.py" beforeDir="false" afterPath="$PROJECT_DIR$/xd.py" afterDir="false" />
-    </list>
+    <list default="true" id="8db6f707-89b6-436a-b23d-c6ac1d98db8e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +14,7 @@
         <entry file="file://$PROJECT_DIR$/xd.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="556">
-              <caret line="140" lean-forward="true" selection-start-line="140" selection-end-line="140" />
+              <caret line="140" selection-start-line="140" selection-end-line="140" />
               <folding>
                 <element signature="e#43#66#0" expanded="true" />
               </folding>
@@ -221,7 +218,7 @@
     <entry file="file://$PROJECT_DIR$/xd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="556">
-          <caret line="140" lean-forward="true" selection-start-line="140" selection-end-line="140" />
+          <caret line="140" selection-start-line="140" selection-end-line="140" />
           <folding>
             <element signature="e#43#66#0" expanded="true" />
           </folding>
