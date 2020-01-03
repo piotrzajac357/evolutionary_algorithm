@@ -67,8 +67,8 @@ print(crossover(p2, p1))
 problem = xd.matrix_to_list(xd.generate_random_input(5, 10))
 garage1 = xd.Garage(4, xd.generate_random_coefficients_vector(4), problem)
 p3 = xd.generate_random_solutions(4, problem, 10)
-for elem in p3:
-    print(elem)
+for element in p3:
+    print(element)
 print('kurwa dziala xD')
 print(crossover(p3[0], p3[1]))
 print(crossover(p3[2], p3[3]))

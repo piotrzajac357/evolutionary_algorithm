@@ -3,8 +3,7 @@
 
 from typing import List
 from random import seed, randint, shuffle
-
-
+import input
 #   from copy import copy, deepcopy
 
 
@@ -136,3 +135,7 @@ print("wyliczenie funkcji celu dla wygenerowanych wczesniej danych")
 garage1 = Garage(4, wsp, matrix_to_list(efg))
 for element in abc:
     print(round(garage1.goal_function(element), 3))
+
+input.save_to_file(generate_random_input(5, 10), 'matrix1.txt')
+input.save_to_file(generate_random_input(20, 99), 'matrix2.txt')
+
