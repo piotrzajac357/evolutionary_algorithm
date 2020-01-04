@@ -2,13 +2,15 @@
 # -*- coding: utf-8 -*-
 
 from typing import List
-from random import seed, randint, shuffle
-import input
+from random import randint, shuffle
+
+
 #   from copy import copy, deepcopy
 
 
 class Garage:
-    def __init__(self, number_of_carts: int, coefficients: List[float], stands: List[List[int]]) -> None:
+    def __init__(self, number_of_carts: int, coefficients: List[float], stands: List[List[int]],
+                 population: List[List[int]]) -> None:
 
         # liczba wozkow przeznaczona do pracy
         # lista wspolczynnikow tempa prayc kazdego wozka
@@ -16,12 +18,21 @@ class Garage:
         self.number_of_carts = number_of_carts
         self.coefficients = coefficients
         self.stands = stands
+        self.population = population
 
     def get_size(self) -> int:
         return self.number_of_carts
 
     def get_coefficients(self) -> List[float]:
         return self.coefficients
+
+    def get_stands(self) -> List[List[int]]:
+        return self.stands
+
+    def exterminate(self):
+
+        # TODO
+
 
     def goal_function(self, solution: List[int]) -> float:
         goal = 0
@@ -107,6 +118,7 @@ def generate_random_coefficients_vector(number_of_carts: int = 1, lower_limit: f
     return coefficients_vector
 
 
+"""
 seed(1)
 abc = [[0, 0, 2], [3, 4, 0], [6, 0, 8]]
 print("dzialanie matrix_to_list")
@@ -135,7 +147,4 @@ print("wyliczenie funkcji celu dla wygenerowanych wczesniej danych")
 garage1 = Garage(4, wsp, matrix_to_list(efg))
 for element in abc:
     print(round(garage1.goal_function(element), 3))
-
-input.save_to_file(generate_random_input(5, 10), 'matrix1.txt')
-input.save_to_file(generate_random_input(20, 99), 'matrix2.txt')
-
+"""
