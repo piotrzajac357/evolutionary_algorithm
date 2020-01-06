@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from typing import List
-import linecache
 
 
 def save_input_to_file(matrix: List[List[int]], filename: str) -> None:
@@ -24,8 +23,20 @@ def load_input_from_file(filename: str) -> List[List[int]]:
     return matrix
 
 
+def save_coeff_vector_to_file(coeffs_vector: List[float], filename: str) -> None:
+    file = open(filename, 'w')
+    for coeff in coeffs_vector:
+        file.write(str(coeff)), file.write(' ')
+    file.close()
+
+
 def load_coeff_vector_from_file(filename: str) -> List[float]:
-    return [float(a) for a in linecache.getline(filename, 0)]
+    coeff_vector = []
+    file = open(filename, 'r')
+    for line in file:
+        coeff_vector.append([float(a) for a in line.split()])
+    file.close()
+    return coeff_vector[0]
 
 
 def save_solutions_to_file(solutions: List[List[int]], filename: str) -> None:

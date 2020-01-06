@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from typing import List
+from typing import List, Tuple
 from random import randint, shuffle
 
 
@@ -9,16 +9,20 @@ from random import randint, shuffle
 
 
 class Garage:
-    def __init__(self, number_of_carts: int, coefficients: List[float], stands: List[List[int]],
-                 population: List[List[int]]) -> None:
-
-        # liczba wozkow przeznaczona do pracy
-        # lista wspolczynnikow tempa prayc kazdego wozka
+    def __init__(self, number_of_carts: int, coefficients: List[float], matrix: List[List[int]],
+                 first_population: List[List[int]]) -> None:
 
         self.number_of_carts = number_of_carts
         self.coefficients = coefficients
-        self.stands = stands
-        self.population = population
+        self.stands = matrix_to_list(matrix)
+        self.population = self.calculate_goal_for_all(first_population)
+        self.population_size = len(self.population)
+
+    def calculate_goal_for_all(self, population_without_costs: List[List[int]]) -> List[Tuple[List[int], float]]:
+        population = []
+        for elem in population_without_costs:
+            population.append((elem, self.goal_function(elem)))
+        return population
 
     def get_size(self) -> int:
         return self.number_of_carts
@@ -29,17 +33,21 @@ class Garage:
     def get_stands(self) -> List[List[int]]:
         return self.stands
 
-    def exterminate(self):
+    def get_population_size(self) -> int:
+        return self.population_size
 
-        # TODO
+    def get_one(self, which_one: int) -> Tuple[List[int], float]:
+        return self.population[which_one]
 
+    def set_one(self, which_one: int, gimme_new_one: Tuple[List[int], float]) -> None:
+        self.population[which_one] = gimme_new_one
 
     def goal_function(self, solution: List[int]) -> float:
         goal = 0
         cart_number = -1
         last_elem = 0
         single_cart_time = 0
-        for elem in solution:
+        for index, elem in enumerate(solution):
             if not elem:
                 if single_cart_time > goal:
                     goal = single_cart_time
@@ -55,7 +63,29 @@ class Garage:
             last_elem = elem
         if single_cart_time > goal:
             goal = single_cart_time
-        return goal
+        return round(goal, 4)
+
+    def get_best_solution_as_tuple(self) -> Tuple[List[int], float]:
+        goal_values = []
+        for elem in self.population:
+            goal_values.append(elem[1])
+        min_value_index = goal_values.index(min(goal_values))
+        return self.get_one(min_value_index)
+
+    def get_best_solution_as_value(self) -> float:
+        return self.get_best_solution_as_tuple()[1]
+
+    def get_more_friendly_solution(self) -> List:
+        solution = self.get_best_solution_as_tuple()
+        more_friendly_solution = []
+        zeros = 0
+        for elem in solution[0]:
+            if elem == 0:
+                more_friendly_solution.append(0)
+                zeros += 1
+            else:
+                more_friendly_solution.append((self.stands[elem - 1][1], self.stands[elem - 1][2]))
+        return more_friendly_solution
 
 
 def matrix_to_list(matrix: List[List[int]]) -> List[List[int]]:
