@@ -21,8 +21,8 @@ def crossover(parent1: List[int], parent2: List[int], number_of_carts: int = Non
                 number_of_carts += 1
 
     if swath_length is None:
-        swath_length = randint(2, len(parent1) - number_of_carts - 1)
-
+        #  swath_length = randint(2, len(parent1) - number_of_carts - 1)
+        swath_length = 3
     # zapisanie pozycji zer poprzez ilosc stanowisk miedzy pierwszym i drugim, drugim i trzecim, itd.
 
     for index in range(0, len(child1)):
@@ -99,6 +99,8 @@ def change_carts(parent1: List[int]) -> List[int]:
 def move_cart_marker(parent1: List[int]) -> List[int]:
     child = copy(parent1)
     number_of_carts = child.count(0)
+    if number_of_carts == 1:
+        return child
     cart_number = randint(2, number_of_carts)
     if cart_number == number_of_carts and child[-1] == 0:
         child[-1] = child[-2]
@@ -138,9 +140,10 @@ def permutate_cart_queue(parent1: List[int]) -> List[int]:
     return child
 
 
+"""
 parent = [0, 1, 2, 0, 3, 4, 6, 5, 7, 0]
 
-"""
+
 print(parent)
 for j in range(0,10):
     print(permutate_cart_queue(parent))
