@@ -7,16 +7,15 @@ from operators import *
 import math
 from random import seed, shuffle, random
 
-
-matrix_size = 8
+matrix_size = 5
 matrix_values_range = 5
-number_of_carts = 6
-size_of_population = 2000
+number_of_carts = 4
+size_of_population = 100
 tournament_size = 5
-number_of_iterations = 100
+number_of_iterations = 200
 chance_of_mutation_1 = 0.25
 chance_of_crossover = 1
-rapid_mutation = 4 * chance_of_mutation_1
+rapid_mutation = 2 * chance_of_mutation_1
 mutation_1_participation = 0.1
 mutation_2_participation = 0.1
 mutation_3_participation = 0.8
@@ -38,18 +37,18 @@ garage = Garage(len(load_coeff_vector_from_file('set1/coefficients.txt')),
                 load_solutions_from_file('set1/solutions.txt'))
 file = open('set1/export.txt', 'w')
 
-
-for a in range(1):
+suma = 0
+for a in range(3):
     garage = Garage(len(load_coeff_vector_from_file('set1/coefficients.txt')),
                     load_coeff_vector_from_file('set1/coefficients.txt'),
                     load_input_from_file('set1/input.txt'),
                     load_solutions_from_file('set1/solutions.txt'))
     seed(a)
     for iteracja in range(number_of_iterations):
-        #  nagly wzrost prawdopodobienstwa mutacji
+        #  powolny wzrost prawdopodobienstwa mutacji
         chance_of_mutation = chance_of_mutation_1 + 1 * chance_of_mutation_1 * iteracja / number_of_iterations
         last_iteration_best_value = garage.get_best_solution_as_value
-        #  powolny wzrost prawdopodobienstwa mutacji
+        #  nagly wzrost prawdopodobienstwa mutacji
         if garage.get_best_solution_as_value == last_iteration_best_value:
             indiversity += 1
         else:
@@ -133,6 +132,8 @@ for a in range(1):
 
         shuffle(garage.population)
         file.write(str(garage.get_best_solution_as_value())), file.write(" ")
-        print(garage.get_best_solution_as_value())
+        #print(garage.get_best_solution_as_value())
+    suma += garage.get_best_solution_as_value()
+    print(garage.get_best_solution_as_tuple())
+print(suma/3)
 
-print(garage.get_best_solution_as_tuple())

@@ -4,6 +4,7 @@
 from random import randint, sample, random, shuffle
 from typing import List
 from copy import copy
+import garage as xd
 
 
 def crossover(parent1: List[int], parent2: List[int], number_of_carts: int = None, swath_length: int = None) -> List[int]:
@@ -53,7 +54,6 @@ def crossover(parent1: List[int], parent2: List[int], number_of_carts: int = Non
 
     for index in zeros_p1:
         child1.insert(index, 0)
-
     return child1
 
 
@@ -162,6 +162,7 @@ print(change_carts(parent))
 
 # Parent1 = [0, 2, 1, 3, 5, 0, 4, 8, 9, 10, 0, 7, 6, 12, 0, 16, 15, 14, 13, 11]
 # Parent2 = [0, 8, 9, 10, 11, 4, 0, 3, 1, 2, 0, 5, 16, 15, 14, 13, 0, 12, 7, 6]
+
 p1 = [0, 1, 2, 0, 3, 4, 5, 6]
 p2 = [0, 6, 5, 4, 0, 3, 2, 1]
 print(p1)
@@ -169,8 +170,9 @@ print(p2)
 
 print(crossover(p1, p2))
 print(crossover(p2, p1))
+
 problem = xd.matrix_to_list(xd.generate_random_input(5, 10))
-garage1 = xd.Garage(4, xd.generate_random_coefficients_vector(4), problem)
+garage1 = xd.Garage(4, xd.generate_random_coefficients_vector(4), problem, xd.generate_random_solutions())
 p3 = xd.generate_random_solutions(4, problem, 10)
 for element in p3:
     print(element)
@@ -180,4 +182,5 @@ print(crossover(p3[2], p3[3]))
 print(crossover(p3[4], p3[5]))
 print(crossover(p3[6], p3[7]))
 print(crossover(p3[8], p3[9]))
+
 """

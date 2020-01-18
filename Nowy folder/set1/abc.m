@@ -1,5 +1,2 @@
-A = importdata('export.txt');
-plot(A)
-grid on;
-xlabel('numer iteracji')
-ylabel('wartosc funkcji celu najlepszego rozwiazania')
+H = tf([1 2 1],1]);
+nyquist(H);
