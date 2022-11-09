@@ -1,0 +1,6 @@
+macierz 12x12
+7 wozki
+koszty 0-30
+srednia z 30 powtorzen
+rozmiar populacji 150
+liczba iteracji 50

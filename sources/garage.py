@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from typing import List, Tuple
 from random import randint, shuffle
 
@@ -19,6 +16,7 @@ class Garage:
         self.population_size = len(self.population)
 
     def calculate_goal_for_all(self, population_without_costs: List[List[int]]) -> List[Tuple[List[int], float]]:
+        # liczy f celu dla calej populacji - uzywana tylko wewnatrz instancji klasy Garage
         population = []
         for elem in population_without_costs:
             population.append((elem, self.goal_function(elem)))
@@ -43,6 +41,7 @@ class Garage:
         self.population[which_one] = gimme_new_one
 
     def goal_function(self, solution: List[int]) -> float:
+        # to liczy funkcje celu dla jednego rozwiazania
         goal = 0
         cart_number = -1
         last_elem = 0
@@ -76,6 +75,7 @@ class Garage:
         return self.get_best_solution_as_tuple()[1]
 
     def get_more_friendly_solution(self) -> List:
+        #   zwraca rozwiazanie w postaci (0,x1,y1,x2,y2,0,x3,y4,...,xn,yn) - w postaci wspolrzednych
         solution = self.get_best_solution_as_tuple()
         more_friendly_solution = []
         zeros = 0
@@ -84,13 +84,14 @@ class Garage:
                 more_friendly_solution.append(0)
                 zeros += 1
             else:
-                more_friendly_solution.append((self.stands[elem - 1][1], self.stands[elem - 1][2]))
+                more_friendly_solution.append((self.stands[elem - 1][2], self.stands[elem - 1][1]))
         return more_friendly_solution
 
 
 def matrix_to_list(matrix: List[List[int]]) -> List[List[int]]:
     # funkcja przyjmuje liste list z kosztami
     # przeksztalca ja w liste elementow [numer_stanowiska, rzad, kolumna, koszt]
+    # jak kon wyglada - kazdy widzi, potrzeba uzycia tej funkcji nie zajdzie
     converted = []
     index = 1
     for row in range(0, len(matrix)):
@@ -104,12 +105,11 @@ def matrix_to_list(matrix: List[List[int]]) -> List[List[int]]:
 def generate_random_input(dim: int = 1, costs_range: int = 1) -> List[List[int]]:
     # funkcja tworzy liste list z losowymi wartosciami naturalnymi od 0 do wartosci rownej drugiemu argumentowi
     matrix = []
-    # seed(what_seed)
     for i in range(0, dim):
         matrix.append([])
         for j in range(0, dim):
             matrix[i].append(randint(0, costs_range))
-            # matrix[i].append(randint(0, costs_range) if randint(0, costs_range) > costs_range/2 else 0)
+            #   matrix[i].append(randint(0, costs_range) if randint(0, costs_range) > costs_range/2 else 0)
             # wersja, w ktorej okolo polowa elementow to 0
     # zwrocona wartosc mozna wladowac do funkcji matrix_to_list
     return matrix

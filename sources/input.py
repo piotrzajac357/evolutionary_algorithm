@@ -1,7 +1,6 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from typing import List
+from garage import matrix_to_list
+# plik z funkcjami zapisujacymi/wczytujacymi dane z pliku
 
 
 def save_input_to_file(matrix: List[List[int]], filename: str) -> None:

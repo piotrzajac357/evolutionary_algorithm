@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from random import randint, sample, random, shuffle
 from typing import List
 from copy import copy
@@ -22,10 +19,11 @@ def crossover(parent1: List[int], parent2: List[int], number_of_carts: int = Non
                 number_of_carts += 1
 
     if swath_length is None:
-        #  swath_length = randint(2, len(parent1) - number_of_carts - 1)
         swath_length = 3
-    # zapisanie pozycji zer poprzez ilosc stanowisk miedzy pierwszym i drugim, drugim i trzecim, itd.
+    elif swath_length == 0:
+        swath_length = randint(2, len(parent1) - number_of_carts - 2)
 
+    # zapisanie pozycji zer poprzez ilosc stanowisk miedzy pierwszym i drugim, drugim i trzecim, itd.
     for index in range(0, len(child1)):
         if not child1[index]:
             zeros_p1.append(index)
@@ -58,6 +56,7 @@ def crossover(parent1: List[int], parent2: List[int], number_of_carts: int = Non
 
 
 def change_carts(parent1: List[int]) -> List[int]:
+    #   zamienia cala liste wozka z cala lista innego wozka
     child = copy(parent1)
     number_of_carts = 0
     for elem in child:
@@ -97,6 +96,7 @@ def change_carts(parent1: List[int]) -> List[int]:
 
 
 def move_cart_marker(parent1: List[int]) -> List[int]:
+    #   przesuwa znacznik losowego wozka losowo w lewo lub w prawo o 1 miejsce
     child = copy(parent1)
     number_of_carts = child.count(0)
     if number_of_carts == 1:
@@ -121,6 +121,7 @@ def move_cart_marker(parent1: List[int]) -> List[int]:
 
 
 def permutate_cart_queue(parent1: List[int]) -> List[int]:
+    #   permutuje liste losowego wozka
     child = copy(parent1)
     number_of_carts = child.count(0)
     cart_number = randint(1, number_of_carts)
@@ -176,7 +177,6 @@ garage1 = xd.Garage(4, xd.generate_random_coefficients_vector(4), problem, xd.ge
 p3 = xd.generate_random_solutions(4, problem, 10)
 for element in p3:
     print(element)
-print('kurwa dziala xD')
 print(crossover(p3[0], p3[1]))
 print(crossover(p3[2], p3[3]))
 print(crossover(p3[4], p3[5]))
