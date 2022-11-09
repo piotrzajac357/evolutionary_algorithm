@@ -5,11 +5,11 @@ import math
 from random import seed, shuffle, random
 import matplotlib.pyplot as plt
 
-matrix_size = 12         # rozmiar fabryki n x n
-matrix_values_range = 5         # wartosci w macierzy
-number_of_carts = 5         # liczba wozkow
-size_of_population = 100         # rozmiar populacji (nie zmienia sie w czasie dzialania algorytmu)
-number_of_iterations = 1000
+matrix_size = 20         # rozmiar fabryki n x n
+matrix_values_range = 10         # wartosci w macierzy
+number_of_carts = 10         # liczba wozkow
+size_of_population = 300         # rozmiar populacji (nie zmienia sie w czasie dzialania algorytmu)
+number_of_iterations = 1250
 replace_worse_parent_with_worse_kid = 1     # zastepowanie gorszego rodzica gorszym dzieckiem (jesli lepsze od niego) 1 - wlaczone, 0 - wylaczone
 
 tournament_size = 3         # rozmiar turnieju (metody selekcji rodzicow)
@@ -28,11 +28,11 @@ y = []
 x = []
 seed(1)
 # tworzenie warunkow zadania
-save_input_to_file(generate_random_input(matrix_size, matrix_values_range), '100x100/input.txt')
-save_coeff_vector_to_file(generate_random_coefficients_vector(number_of_carts), '100x100/coefficients.txt')
+save_input_to_file(generate_random_input(matrix_size, matrix_values_range), 'set7/input.txt')
+save_coeff_vector_to_file(generate_random_coefficients_vector(number_of_carts), 'set7/coefficients.txt')
 save_solutions_to_file(
-    generate_random_solutions(number_of_carts, matrix_to_list(load_input_from_file('100x100/input.txt')),
-                              size_of_population), '100x100/solutions.txt')
+    generate_random_solutions(number_of_carts, matrix_to_list(load_input_from_file('set7/input.txt')),
+                              size_of_population), 'set7/solutions.txt')
 
 #book = xlrd.open_workbook("testy.xlsx")
 #sheet = book.sheet_by_name("100x100")

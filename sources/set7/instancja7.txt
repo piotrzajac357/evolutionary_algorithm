@@ -3,4 +3,4 @@ macierz 20x20
 koszty 0-9
 srednia z 30 powtorzen
 rozmiar populacji 300
-liczba iteracji 50
+liczba iteracji 1250
